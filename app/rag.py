@@ -82,12 +82,7 @@ class UniHelpRAG:
                 "fallback_used": True
             }
 
-        if len(sources) == 0:
-            return {
-                "answer": "Désolé, je ne trouve pas cette information dans les documents officiels. Veuillez contacter votre secrétariat.",
-                "sources": [],
-                "fallback_used": True
-            }
+
 
         # Pipeline Langchain: Prompt -> LLM -> Output text
         chain = UNIHELP_PROMPT | self.llm | StrOutputParser()

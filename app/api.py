@@ -14,7 +14,7 @@ rag_engine = UniHelpRAG()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # origine React
+    allow_origins=["*"],  # Allows all origins (localhost + production frontend)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
