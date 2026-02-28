@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from app.schemas import QueryRequest, QueryResponse
 from app.rag import UniHelpRAG
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="UniHelp API",
@@ -11,6 +12,13 @@ app = FastAPI(
 # Initialisation du moteur RAG au démarrage
 rag_engine = UniHelpRAG()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # origine React
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get("/")
 def read_root():
     return {"status": "ok", "message": "API UniHelp fonctionnelle."}
